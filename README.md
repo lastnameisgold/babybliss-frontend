@@ -14,5 +14,10 @@
 
 ## Key Features
 
+- Create a profile for a child
+- Log diapers: wet, dirty, rash, and add a note.
+- Log milk: duration, quantity, breast/bottle fed, and add a note.
+- Ability to see daily affirmations.
+
 ## MVP
 
