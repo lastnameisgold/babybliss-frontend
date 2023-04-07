@@ -31,7 +31,7 @@
 
 ## Links
 
-- ![Front-end Repo](https://github.com/lastnameisgold/babybliss-frontend)
-- ![Back-end Repo](https://github.com/lastnameisgold/babybliss-backend)
-- ![FigJam Board](https://www.figma.com/file/MvFS6tODbEKkUuj9GF9Y6O/Untitled?node-id=0%3A1&t=O1bBWxOgJ9CCWcP5-1)
-- ![Trello Board](https://trello.com/invite/b/eQAmBhjW/ATTIbce1cfe8a4c5ee7def1f5f5010b4fc4542865C5B/babybliss)
+- [Front-end Repo](https://github.com/lastnameisgold/babybliss-frontend)
+- [Back-end Repo](https://github.com/lastnameisgold/babybliss-backend)
+- [FigJam Board](https://www.figma.com/file/MvFS6tODbEKkUuj9GF9Y6O/Untitled?node-id=0%3A1&t=O1bBWxOgJ9CCWcP5-1)
+- [Trello Board](https://trello.com/invite/b/eQAmBhjW/ATTIbce1cfe8a4c5ee7def1f5f5010b4fc4542865C5B/babybliss)
