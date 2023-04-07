@@ -12,6 +12,11 @@
 
 </details>
 
+## Technology
+
+- Backend - Django
+- Frontend - ReactJs and Bootstrap
+
 ## Key Features
 
 - Create a profile for a child
