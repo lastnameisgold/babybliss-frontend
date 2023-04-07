@@ -15,7 +15,7 @@
 ## Technology
 
 - Backend - Django
-- Frontend - ReactJs and Bootstrap
+- Frontend - ReactJS and Bootstrap
 
 ## Key Features
 
