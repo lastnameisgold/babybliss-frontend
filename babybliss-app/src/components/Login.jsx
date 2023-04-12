@@ -19,7 +19,6 @@ export const Login = () => {
     const { data } = await axios.post("http://localhost:8000/token/", user, {
       headers: {
         "Content-Type": "application/json",
-        // "Access-Control-Allow-Origin": true,
       },
       // withCredentials: true,
     });
@@ -62,7 +61,7 @@ export const Login = () => {
             />
           </div>
           <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary rounded-5">
               Submit
             </button>
           </div>

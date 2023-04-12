@@ -16,6 +16,7 @@ axios.interceptors.response.use(
         {
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:8000",
           },
           withCredentials: true,
         }
