@@ -4,7 +4,6 @@ import axios from "axios";
 
 // Define the Login function.
 export const Home = (props) => {
-  console.log(props);
   // Randomly select an affirmation from the affirmations array.
   const rand = Math.floor(Math.random() * props.affirmations.length);
 
@@ -54,7 +53,7 @@ export const Home = (props) => {
               return (
                 // Render diaper and feeding events
                 <div
-                  className="diaper-feeding-container text-bg-primary w-100 p-4 rounded-3 text-left justify-content-left align-items-left"
+                  className="diaper-and-feeding-container text-bg-primary w-100 p-4 rounded-3 text-left justify-content-left align-items-left"
                   key={event.id}
                 >
                   {event.diaper ? (
@@ -72,11 +71,16 @@ export const Home = (props) => {
                     </>
                   )}
                   <p>
-                    Date: {logDateString} at {logTimeString}
+                    {logDateString} at {logTimeString}
                   </p>
-                  <p>Name: {event.baby.name}</p>
                   {event.notes && event.notes !== "" && (
-                    <p>Note: {event.notes}</p>
+                    <p>
+                      <span>
+                        <small className="text-uppercase">Note</small>
+                      </span>
+                      <br />
+                      {event.notes}
+                    </p>
                   )}
                 </div>
               );

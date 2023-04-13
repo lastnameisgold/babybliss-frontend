@@ -6,6 +6,7 @@ import { Login } from "./components/Login";
 import { Home } from "./components/Home";
 import { Navigation } from "./components/Navigation";
 import { Logout } from "./components/Logout";
+import AddDiaper from "./components/AddDiaper";
 
 function App() {
   const [affirmations, setAffirmations] = useState([]); // State to handle affirmations
@@ -14,13 +15,14 @@ function App() {
   const [feeding, setFeeding] = useState([]); // State to handle feeding
   const [error, setError] = useState(null); // State to handle error
 
+  const [diaperContent, setDiaperContent] = useState([]);
+
   // Fetch affirmations from API
   useEffect(() => {
     const getAffirmations = async () => {
       try {
         const res = await Client.get("/affirmations/");
         setAffirmations(res.data);
-        console.log(res.data);
       } catch (error) {
         console.error("Failed to get affirmations", error);
         setError("Failed to get affirmations. Please try again."); // Set error state
@@ -35,7 +37,6 @@ function App() {
       try {
         const res = await Client.get("/babies/");
         setBaby(res.data);
-        console.log(res.data);
       } catch (error) {
         console.error("Failed to get baby", error);
         setError("Failed to get baby. Please try again."); // Set error state
@@ -50,7 +51,6 @@ function App() {
       try {
         const res = await Client.get("/diapers/");
         setDiaper(res.data);
-        console.log(res.data);
       } catch (error) {
         console.error("Failed to get diaper", error);
         setError("Failed to get diaper. Please try again."); // Set error state
@@ -65,7 +65,6 @@ function App() {
       try {
         const res = await Client.get("/feedings/");
         setFeeding(res.data);
-        console.log(res.data);
       } catch (error) {
         console.error("Failed to get feeding", error);
         setError("Failed to get feeding. Please try again."); // Set error state
@@ -73,6 +72,26 @@ function App() {
     };
     getFeeding();
   }, []);
+
+  const getDiaperContent = () => {
+    Client.get(`/diapers`).then((getDiaperContent) => {
+      setDiaperContent(getDiaperContent.data);
+    });
+  };
+
+  useEffect(() => {
+    getDiaperContent();
+  }, []);
+
+  // const getContent = () => {
+  //   Client.get(`/events`).then((getContent) => {
+  //     setEventContent(getContent.data);
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   getContent();
+  // }, []);
 
   return (
     <div className="App">
@@ -90,6 +109,10 @@ function App() {
                 feeding={feeding}
               />
             }
+          />
+          <Route
+            path="/diaper"
+            element={<AddDiaper diaperContent={diaperContent} />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
