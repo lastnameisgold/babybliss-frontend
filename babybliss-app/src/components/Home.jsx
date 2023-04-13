@@ -1,11 +1,10 @@
 // Import the react JS packages
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 // Define the Login function.
 export const Home = (props) => {
-  // const [message, setMessage] = useState("Welcome to BabyBliss!");
-
+  console.log(props);
   // Randomly select an affirmation from the affirmations array.
   const rand = Math.floor(Math.random() * props.affirmations.length);
 
@@ -20,7 +19,6 @@ export const Home = (props) => {
               "Content-Type": "application/json",
             },
           });
-          // setMessage(data.message);
         } catch (e) {
           console.log("not auth");
         }
@@ -35,29 +33,54 @@ export const Home = (props) => {
       >
         <h2 className="affirmation-title">
           {props.affirmations[rand]?.message}
-          {/* {message} */}
         </h2>
       </div>
 
       <div className="flex-wrap d-grid gap-3">
         {props.diaper &&
-          props.diaper.map((event) => (
-            <div className="diaper-container w-100 p-4 rounded-3 text-left text-bg-primary justify-content-left align-items-left">
-              <p>Date: {event.log}</p>
-              <p>Name: {event.baby}</p>
-              <p>Note: {event.notes}</p>
-            </div>
-          ))}
-        {props.feeding &&
-          props.feeding.map((event) => (
-            <div className="diaper-container w-100 p-4 rounded-3 text-left text-bg-dark justify-content-left align-items-left">
-              <p>Date: {event.log}</p>
-              <p>Name: {event.baby}</p>
-              <p>Amount: {event.amount} oz</p>
-              <p>Breastfed: {event.breastFed}</p>
-              <p>Note: {event.notes}</p>
-            </div>
-          ))}
+          props.feeding &&
+          [...props.diaper, ...props.feeding] // Merge diaper and feeding arrays
+            .sort((a, b) => new Date(b.log) - new Date(a.log)) // Sort combined array in descending order based on log property
+            .map((event) => {
+              // Convert log to Date object
+              const logDate = new Date(event.log);
+              // Extract date and time components
+              const logDateString = logDate.toLocaleDateString();
+              const logTimeString = logDate.toLocaleTimeString([], {
+                hour: "numeric",
+                minute: "2-digit",
+              });
+
+              return (
+                // Render diaper and feeding events
+                <div
+                  className="diaper-feeding-container text-bg-primary w-100 p-4 rounded-3 text-left justify-content-left align-items-left"
+                  key={event.id}
+                >
+                  {event.diaper ? (
+                    <>
+                      <h2>{event.diaper === 1 ? "💦" : "💩"}</h2>
+                      <p>Diaper: {event.diaper === 1 ? "Wet" : "Dirty"}</p>
+                    </>
+                  ) : (
+                    <>
+                      <h2>🍼</h2>
+                      <p>Amount: {event.amount} oz</p>
+                      <p>
+                        Breastfed: {event.breastFed === true ? "Yes" : "No"}
+                      </p>
+                    </>
+                  )}
+                  <p>
+                    Date: {logDateString} at {logTimeString}
+                  </p>
+                  <p>Name: {event.baby.name}</p>
+                  {event.notes && event.notes !== "" && (
+                    <p>Note: {event.notes}</p>
+                  )}
+                </div>
+              );
+            })}
       </div>
     </div>
   );
