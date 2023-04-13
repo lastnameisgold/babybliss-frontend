@@ -12,14 +12,18 @@ export function Navigation() {
 
   return (
     <div>
-      <Navbar className="px-4" bg="dark" variant="dark">
-        <Navbar.Brand href="/">BabyBliss</Navbar.Brand>
-        <Nav className="me-auto">
-          {/* {isAuth ? <Nav.Link href="/">Home</Nav.Link> : null} */}
-        </Nav>
+      <Navbar className="px-4 me-auto" bg="dark" variant="dark">
+        <Navbar.Brand className="me-auto" href="/">
+          BabyBliss
+        </Navbar.Brand>
+
         <Nav>
           {isAuth ? (
-            <Nav.Link href="/logout">Logout</Nav.Link>
+            <>
+              <Nav.Link href="#">Add Diaper</Nav.Link>
+              <Nav.Link href="#">Add Feeding</Nav.Link>
+              <Nav.Link href="/logout">Logout</Nav.Link>
+            </>
           ) : (
             <Nav.Link href="/login">Login</Nav.Link>
           )}

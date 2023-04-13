@@ -48,6 +48,16 @@ export const Home = (props) => {
               <p>Note: {event.notes}</p>
             </div>
           ))}
+        {props.feeding &&
+          props.feeding.map((event) => (
+            <div className="diaper-container w-100 p-4 rounded-3 text-left text-bg-dark justify-content-left align-items-left">
+              <p>Date: {event.log}</p>
+              <p>Name: {event.baby}</p>
+              <p>Amount: {event.amount} oz</p>
+              <p>Breastfed: {event.breastFed}</p>
+              <p>Note: {event.notes}</p>
+            </div>
+          ))}
       </div>
     </div>
   );

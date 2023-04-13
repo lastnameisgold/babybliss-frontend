@@ -1,3 +1,4 @@
+import "./App.css";
 import React, { useState, useEffect } from "react";
 import Client from "./services/api";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -7,11 +8,13 @@ import { Navigation } from "./components/Navigation";
 import { Logout } from "./components/Logout";
 
 function App() {
-  const [affirmations, setAffirmations] = useState([]);
-  const [baby, setBaby] = useState([]);
-  const [diaper, setDiaper] = useState([]);
+  const [affirmations, setAffirmations] = useState([]); // State to handle affirmations
+  const [baby, setBaby] = useState([]); // State to handle baby
+  const [diaper, setDiaper] = useState([]); //
+  const [feeding, setFeeding] = useState([]); // State to handle feeding
   const [error, setError] = useState(null); // State to handle error
 
+  // Fetch affirmations from API
   useEffect(() => {
     const getAffirmations = async () => {
       try {
@@ -26,6 +29,7 @@ function App() {
     getAffirmations();
   }, []);
 
+  // Fetch baby from API
   useEffect(() => {
     const getBaby = async () => {
       try {
@@ -40,6 +44,7 @@ function App() {
     getBaby();
   }, []);
 
+  // Fetch diaper from API
   useEffect(() => {
     const getDiaper = async () => {
       try {
@@ -52,6 +57,21 @@ function App() {
       }
     };
     getDiaper();
+  }, []);
+
+  // Fetch feeding from API
+  useEffect(() => {
+    const getFeeding = async () => {
+      try {
+        const res = await Client.get("/feedings/");
+        setFeeding(res.data);
+        console.log(res.data);
+      } catch (error) {
+        console.error("Failed to get feeding", error);
+        setError("Failed to get feeding. Please try again."); // Set error state
+      }
+    };
+    getFeeding();
   }, []);
 
   return (
@@ -67,6 +87,7 @@ function App() {
                 error={error} // Pass error prop to Home component
                 baby={baby}
                 diaper={diaper}
+                feeding={feeding}
               />
             }
           />

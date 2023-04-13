@@ -32,10 +32,13 @@ export const Login = () => {
   };
 
   return (
-    <div className="Auth-form-container">
-      <form className="Auth-form w-50 p-4" onSubmit={submit}>
+    <div className="Auth-form-container d-flex justify-content-center align-items-center">
+      <form
+        className="Auth-form w-50 p-4 rounded-3 bg-light text-bg-light"
+        onSubmit={submit}
+      >
         <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Sign In</h3>
+          <h3 className="Auth-form-title">Login</h3>
           <div className="form-group mt-3">
             <label>Username</label>
             <input
