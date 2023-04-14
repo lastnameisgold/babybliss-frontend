@@ -7,6 +7,7 @@ import { Home } from "./components/Home";
 import { Navigation } from "./components/Navigation";
 import { Logout } from "./components/Logout";
 import AddDiaper from "./components/AddDiaper";
+import AddFeeding from "./components/AddFeeding";
 
 function App() {
   const [affirmations, setAffirmations] = useState([]); // State to handle affirmations
@@ -15,7 +16,9 @@ function App() {
   const [feeding, setFeeding] = useState([]); // State to handle feeding
   const [error, setError] = useState(null); // State to handle error
 
-  const [diaperContent, setDiaperContent] = useState([]);
+  const [diaperContent, setDiaperContent] = useState([]); // State to handle diaper content
+
+  const [feedingContent, setFeedingContent] = useState([]); // State to handle feeding content
 
   // Fetch affirmations from API
   useEffect(() => {
@@ -73,6 +76,7 @@ function App() {
     getFeeding();
   }, []);
 
+  // Fetch diaper content from API
   const getDiaperContent = () => {
     Client.get(`/diapers`).then((getDiaperContent) => {
       setDiaperContent(getDiaperContent.data);
@@ -83,15 +87,16 @@ function App() {
     getDiaperContent();
   }, []);
 
-  // const getContent = () => {
-  //   Client.get(`/events`).then((getContent) => {
-  //     setEventContent(getContent.data);
-  //   });
-  // };
+  // Fetch feeding content from API
+  const getFeedingContent = () => {
+    Client.get(`/feedings`).then((getFeedingContent) => {
+      setFeedingContent(getFeedingContent.data);
+    });
+  };
 
-  // useEffect(() => {
-  //   getContent();
-  // }, []);
+  useEffect(() => {
+    getFeedingContent();
+  }, []);
 
   return (
     <div className="App">
@@ -103,7 +108,7 @@ function App() {
             element={
               <Home
                 affirmations={affirmations}
-                error={error} // Pass error prop to Home component
+                error={error}
                 baby={baby}
                 diaper={diaper}
                 feeding={feeding}
@@ -113,6 +118,10 @@ function App() {
           <Route
             path="/diaper"
             element={<AddDiaper diaperContent={diaperContent} />}
+          />
+          <Route
+            path="/feeding"
+            element={<AddFeeding feedingContent={feedingContent} />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />

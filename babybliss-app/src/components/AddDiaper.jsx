@@ -4,6 +4,10 @@ import Client from "../services/api";
 export default function AddDiaper(props) {
   // Define state variables
   const [addDiaper, setAddDiaper] = useState([]);
+
+  // Add state variable for alert
+  const [showAlert, setShowAlert] = useState(false);
+
   // Define form data state variable
   const [formData, setFormData] = useState({
     log: "",
@@ -31,12 +35,15 @@ export default function AddDiaper(props) {
     const res = await Client.post("/diapers/", formData);
     console.log(res.data);
     setAddDiaper(res.data);
+    // Update showAlert state to true to show alert
+    setShowAlert(true);
   };
 
   return (
-    <div>
+    <div className="p-4">
       <form>
-        <div className="form-group">
+        {showAlert && <div className="alert alert-success">Diaper logged</div>}
+        <div className="form-group p-4">
           <label htmlFor="log">Date and time</label>
           <input
             type="datetime-local"
@@ -55,11 +62,12 @@ export default function AddDiaper(props) {
             value={formData.diaper}
             onChange={handleChange}
           >
+            <option value="">-- Select an option --</option>
             <option value="1">Wet</option>
             <option value="2">Dirty</option>
           </select>
 
-          {/* <label htmlFor="rash">Rash</label>
+          <label htmlFor="rash">Rash</label>
           <select
             className="form-control"
             id="rash"
@@ -67,9 +75,10 @@ export default function AddDiaper(props) {
             value={formData.rash}
             onChange={handleChange}
           >
-            <option value="1">Yes</option>
-            <option value="2">No</option>
-          </select> */}
+            <option value="">-- Select an option --</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
 
           <label htmlFor="notes">Notes</label>
           <input
@@ -81,18 +90,6 @@ export default function AddDiaper(props) {
             onChange={handleChange}
           />
 
-          {/* <label htmlFor="baby">Baby</label>
-          <select
-            className="form-control"
-            id="baby"
-            name="baby"
-            value={formData.baby}
-            onChange={handleChange}
-          >
-            <option value="1">Baby 1</option>
-            <option value="2">Baby 2</option>
-          </select> */}
-
           <button
             type="submit"
             className="btn btn-primary"
@@ -102,14 +99,6 @@ export default function AddDiaper(props) {
           </button>
         </div>
       </form>
-      {addDiaper && (
-        <div>
-          <h2>{addDiaper.log}</h2>
-          <h2>{addDiaper.diaper}</h2>
-          <h2>{addDiaper.rash}</h2>
-          <h2>{addDiaper.notes}</h2>
-        </div>
-      )}
     </div>
   );
 }

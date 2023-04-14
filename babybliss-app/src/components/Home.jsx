@@ -59,20 +59,35 @@ export const Home = (props) => {
                   {event.diaper ? (
                     <>
                       <h2>{event.diaper === 1 ? "💦" : "💩"}</h2>
-                      <p>Diaper: {event.diaper === 1 ? "Wet" : "Dirty"}</p>
+                      <p>
+                        <span>
+                          <small className="text-uppercase">Diaper</small>
+                        </span>
+                        <br />
+                        {event.diaper === 1 ? "Wet" : "Dirty"}
+                      </p>
+                      <span>
+                        <small className="text-uppercase">Skin Rash</small>
+                      </span>
+                      <br />
+                      <p>{event.rash === 1 ? "Yes" : "No"}</p>
                     </>
                   ) : (
                     <>
                       <h2>🍼</h2>
-                      <p>Amount: {event.amount} oz</p>
-                      <p>
-                        Breastfed: {event.breastFed === true ? "Yes" : "No"}
-                      </p>
+                      <span>
+                        <small className="text-uppercase">Amount</small>
+                      </span>
+                      <br />
+                      <p>{event.amount} oz</p>
+                      <span>
+                        <small className="text-uppercase">Feeding Method</small>
+                      </span>
+                      <br />
+                      <p>{event.method === 1 ? "Bottle" : "Breast"}</p>
                     </>
                   )}
-                  <p>
-                    {logDateString} at {logTimeString}
-                  </p>
+
                   {event.notes && event.notes !== "" && (
                     <p>
                       <span>
@@ -82,6 +97,12 @@ export const Home = (props) => {
                       {event.notes}
                     </p>
                   )}
+
+                  <p>
+                    <small>
+                      {logDateString} at {logTimeString}
+                    </small>
+                  </p>
                 </div>
               );
             })}
