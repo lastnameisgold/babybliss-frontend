@@ -15,7 +15,7 @@ export const Home = (props) => {
 
   const showDiaper = (event) => {
     setFormData({ ...formData, diaper_id: event.id });
-    navigate(`${event.id}`);
+    navigate(`/diaperdetails/${event.id}`);
   };
 
   useEffect(() => {
@@ -29,6 +29,7 @@ export const Home = (props) => {
               "Content-Type": "application/json",
             },
           });
+          console.log(data);
         } catch (e) {
           console.log("not auth");
         }

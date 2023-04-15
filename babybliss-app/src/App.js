@@ -35,7 +35,7 @@ function App() {
   });
 
   useEffect(() => {
-    console.log(formData);
+    // console.log(formData);
   }, [formData]);
 
   // Fetch affirmations from API
