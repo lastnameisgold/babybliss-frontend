@@ -12,6 +12,8 @@ import AddDiaper from "./components/AddDiaper";
 import AddFeeding from "./components/AddFeeding";
 import DiaperDetails from "./components/DiaperDetails";
 import FeedingDetails from "./components/FeedingDetails";
+import EditDiaper from "./components/EditDiaper";
+import EditFeeding from "./components/EditFeeding";
 
 function App() {
   const [affirmations, setAffirmations] = useState([]); // State to handle affirmations
@@ -233,6 +235,25 @@ function App() {
                 formData={formData}
               />
             }
+          />
+
+          <Route
+            path="/editdiaper/:id"
+            element={<EditDiaper />}
+            diaper={diaper}
+            diaperContent={diaperContent}
+            handleChange={handleChange}
+            handleSubmitDiaper={handleSubmitDiaper}
+            formData={formData}
+          />
+          <Route
+            path="/editfeeding/:id"
+            element={<EditFeeding />}
+            feeding={feeding}
+            feedingContent={feedingContent}
+            handleChange={handleChange}
+            handleSubmitFeeding={handleSubmitFeeding}
+            formData={formData}
           />
 
           <Route path="/login" element={<Login />} />
