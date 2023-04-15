@@ -41,7 +41,12 @@ export default function FeedingDetails(props) {
         </div>
         <div className="d-flex gap-2">
           <button className="btn btn-outline-primary">Edit</button>
-          <button className="btn btn-outline-danger">Delete</button>
+          <button
+            className="btn btn-outline-danger"
+            onClick={() => props.handleDeleteFeeding(feeding.id)}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
