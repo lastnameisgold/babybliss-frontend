@@ -26,12 +26,20 @@ export default function DiaperDetails(props) {
   console.log(diaper);
 
   return (
-    <div key={diaper.id}>
-      <h1>Diaper Details</h1>
-      <p>{diaper.log}</p>
-      <p>{diaper.diaper}</p>
-      <p>{diaper.rash}</p>
-      <p>{diaper.notes}</p>
+    <div key={diaper.id} className="p-5">
+      <div className="text-bg-light rounded-3 p-4">
+        <div>
+          <h2>{diaper.diaper === 1 ? "💦" : "💩"}</h2>
+          <p>{diaper.log}</p>
+          <p>{diaper.diaper}</p>
+          <p>{diaper.rash}</p>
+          <p>{diaper.notes}</p>
+        </div>
+        <div className="d-flex gap-2">
+          <button className="btn btn-outline-primary">Edit</button>
+          <button className="btn btn-light btn-outline-danger">Delete</button>
+        </div>
+      </div>
     </div>
   );
 }

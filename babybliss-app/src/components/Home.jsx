@@ -37,7 +37,7 @@ export const Home = (props) => {
     }
   }, []);
   return (
-    <div className="home-container d-grid gap-3">
+    <div className="home-container bg-light d-grid gap-3">
       <div className="affirmation-container">
         <div className="affirmation-content text-center d-flex justify-content-center align-items-center">
           <h2 className="affirmation-title">
