@@ -13,9 +13,22 @@ export const Home = (props) => {
 
   let navigate = useNavigate();
 
-  const showDiaper = (event) => {
+  // const showDetails = (event) => {
+  //   setFormData({ ...formData, diaper_id: event.id });
+  //   navigate(`/diaperdetails/${event.id}`);
+  // };
+
+  const showDetails = (event) => {
     setFormData({ ...formData, diaper_id: event.id });
-    navigate(`/diaperdetails/${event.id}`);
+
+    // Check if it's a diaper card or a feeding card
+    if (event.diaper !== undefined) {
+      // Diaper card clicked, navigate to diaper details
+      navigate(`/diaperdetails/${event.id}`);
+    } else {
+      // Feeding card clicked, navigate to feeding details
+      navigate(`/feedingdetails/${event.id}`);
+    }
   };
 
   useEffect(() => {
@@ -65,8 +78,8 @@ export const Home = (props) => {
                 return (
                   // Render diaper and feeding events
                   <div
-                    className="diaper-and-feeding-container text-bg-primary w-100 p-4 rounded-3 text-left justify-content-left align-items-left"
-                    onClick={() => showDiaper(event)}
+                    className="diaper-and-feeding-container text-bg-primary w-100 p-4 rounded-4 text-left justify-content-left align-items-left"
+                    onClick={() => showDetails(event)}
                     key={event.id}
                   >
                     {event.diaper ? (

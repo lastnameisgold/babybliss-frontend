@@ -27,7 +27,7 @@ export default function DiaperDetails(props) {
 
   return (
     <div key={diaper.id} className="p-5">
-      <div className="text-bg-light rounded-3 p-4">
+      <div className="text-bg-dark rounded-4 p-4">
         <div>
           <h2>{diaper.diaper === 1 ? "💦" : "💩"}</h2>
           <p>{diaper.log}</p>
@@ -37,7 +37,7 @@ export default function DiaperDetails(props) {
         </div>
         <div className="d-flex gap-2">
           <button className="btn btn-outline-primary">Edit</button>
-          <button className="btn btn-light btn-outline-danger">Delete</button>
+          <button className="btn btn-outline-danger">Delete</button>
         </div>
       </div>
     </div>
