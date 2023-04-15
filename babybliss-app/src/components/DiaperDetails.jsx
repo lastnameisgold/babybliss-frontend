@@ -37,7 +37,12 @@ export default function DiaperDetails(props) {
         </div>
         <div className="d-flex gap-2">
           <button className="btn btn-outline-primary">Edit</button>
-          <button className="btn btn-outline-danger">Delete</button>
+          <button
+            className="btn btn-outline-danger"
+            onClick={() => props.handleDeleteDiaper(diaper.id)}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
