@@ -20,8 +20,8 @@ export function Navigation() {
         <Nav>
           {isAuth ? (
             <>
-              <Nav.Link href="/diaper">Add Diaper</Nav.Link>
-              <Nav.Link href="/feeding">Add Feeding</Nav.Link>
+              <Nav.Link href="/adddiaper">Add Diaper</Nav.Link>
+              <Nav.Link href="/addfeeding">Add Feeding</Nav.Link>
               <Nav.Link href="/logout">Logout</Nav.Link>
             </>
           ) : (

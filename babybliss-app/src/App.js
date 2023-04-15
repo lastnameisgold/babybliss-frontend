@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Client from "./services/api";
 import { Data } from "./Data";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { Login } from "./components/Login";
 import { Home } from "./components/Home";
 import { Navigation } from "./components/Navigation";
@@ -130,15 +130,15 @@ function App() {
 
   // Handle change
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
   // Handle submit diaper
   const handleSubmitDiaper = async (e, id) => {
-    console.log("id", id);
+    console.log("id:", id);
     e.preventDefault();
     console.log(formData);
-    Client.post(`/diapers/${id}`, formData).then(() => {
+    Client.put(`/diapers/${id}`, formData).then(() => {
       navigate("/");
       getDiaperContent();
     });
@@ -149,7 +149,7 @@ function App() {
     console.log("id", id);
     e.preventDefault();
     console.log(formData);
-    Client.post(`/feedings/${id}`, formData).then(() => {
+    Client.put(`/feedings/${id}`, formData).then(() => {
       navigate("/");
       getFeedingContent();
     });
@@ -189,7 +189,7 @@ function App() {
             }
           />
           <Route
-            path="/diaper"
+            path="/adddiaper"
             element={
               <AddDiaper
                 diaper={diaper}
@@ -206,12 +206,13 @@ function App() {
                 diaperContent={diaperContent}
                 handleChange={handleChange}
                 handleSubmitDiaper={handleSubmitDiaper}
+                handleDeleteDiaper={handleDeleteDiaper}
                 formData={formData}
               />
             }
           />
           <Route
-            path="/feeding"
+            path="/addfeeding"
             element={
               <AddFeeding
                 feeding={feeding}
@@ -228,6 +229,7 @@ function App() {
                 feedingContent={feedingContent}
                 handleChange={handleChange}
                 handleSubmitFeeding={handleSubmitFeeding}
+                handleDeleteFeeding={handleDeleteFeeding}
                 formData={formData}
               />
             }
