@@ -58,6 +58,7 @@ export default function AddFeeding(props) {
           <input
             type="number"
             min="0"
+            max="10"
             className="form-control"
             id="amount"
             name="amount"

@@ -1,13 +1,17 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import Client from "./services/api";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Data } from "./Data";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { Login } from "./components/Login";
 import { Home } from "./components/Home";
 import { Navigation } from "./components/Navigation";
 import { Logout } from "./components/Logout";
 import AddDiaper from "./components/AddDiaper";
 import AddFeeding from "./components/AddFeeding";
+import DiaperDetails from "./components/DiaperDetails";
+import FeedingDetails from "./components/FeedingDetails";
 
 function App() {
   const [affirmations, setAffirmations] = useState([]); // State to handle affirmations
@@ -17,8 +21,22 @@ function App() {
   const [error, setError] = useState(null); // State to handle error
 
   const [diaperContent, setDiaperContent] = useState([]); // State to handle diaper content
-
   const [feedingContent, setFeedingContent] = useState([]); // State to handle feeding content
+
+  const [formData, setFormData] = useState({
+    log: "",
+    diaper: "",
+    rash: "",
+    amount: "",
+    method: "",
+    notes: "",
+    diaper_id: JSON.parse(localStorage.getItem("formData"))?.diaper_id,
+    feeding_id: JSON.parse(localStorage.getItem("formData"))?.feeding_id,
+  });
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   // Fetch affirmations from API
   useEffect(() => {
@@ -98,9 +116,62 @@ function App() {
     getFeedingContent();
   }, []);
 
+  let navigate = useNavigate();
+
+  // Show diaper
+  const showDiaper = (diaper) => {
+    navigate(`${diaper.id}`);
+  };
+
+  // Show feeding
+  const showFeeding = (feeding) => {
+    navigate(`${feeding.id}`);
+  };
+
+  // Handle change
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Handle submit diaper
+  const handleSubmitDiaper = async (e, id) => {
+    console.log("id", id);
+    e.preventDefault();
+    console.log(formData);
+    Client.post(`/diapers/${id}`, formData).then(() => {
+      navigate("/");
+      getDiaperContent();
+    });
+  };
+
+  // Handle submit feeding
+  const handleSubmitFeeding = async (e, id) => {
+    console.log("id", id);
+    e.preventDefault();
+    console.log(formData);
+    Client.post(`/feedings/${id}`, formData).then(() => {
+      navigate("/");
+      getFeedingContent();
+    });
+  };
+
+  // Handle delete diaper
+  const handleDeleteDiaper = (id) => {
+    Client.delete(`/diapers/${id}`).then(() => {
+      navigate("/");
+    });
+  };
+
+  // Handle delete feeding
+  const handleDeleteFeeding = (id) => {
+    Client.delete(`/feedings/${id}`).then(() => {
+      navigate("/");
+    });
+  };
+
   return (
     <div className="App">
-      <BrowserRouter>
+      <Data.Provider value={{ formData, setFormData }}>
         <Navigation />
         <Routes>
           <Route
@@ -112,21 +183,60 @@ function App() {
                 baby={baby}
                 diaper={diaper}
                 feeding={feeding}
+                showDiaper={showDiaper}
+                showFeeding={showFeeding}
               />
             }
           />
           <Route
             path="/diaper"
-            element={<AddDiaper diaperContent={diaperContent} />}
+            element={
+              <AddDiaper
+                diaper={diaper}
+                diaperContent={diaperContent}
+                showDiaper={showDiaper}
+              />
+            }
+          />
+          <Route
+            path="/diaperdetails/:id"
+            element={
+              <DiaperDetails
+                diaper={diaper}
+                diaperContent={diaperContent}
+                handleChange={handleChange}
+                handleSubmitDiaper={handleSubmitDiaper}
+                formData={formData}
+              />
+            }
           />
           <Route
             path="/feeding"
-            element={<AddFeeding feedingContent={feedingContent} />}
+            element={
+              <AddFeeding
+                feeding={feeding}
+                feedingContent={feedingContent}
+                showFeeding={showFeeding}
+              />
+            }
           />
+          <Route
+            path="/feedingdetails/:id"
+            element={
+              <FeedingDetails
+                feeding={feeding}
+                feedingContent={feedingContent}
+                handleChange={handleChange}
+                handleSubmitFeeding={handleSubmitFeeding}
+                formData={formData}
+              />
+            }
+          />
+
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
         </Routes>
-      </BrowserRouter>
+      </Data.Provider>
     </div>
   );
 }
