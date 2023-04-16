@@ -1,20 +1,27 @@
-// export default function FeedingDetails() {
-//   return <h1>Feeding Details</h1>;
-// }
-
-import { useEffect, useState, useContext } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { Data } from "../Data";
+import React, { useEffect, useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import Data from "../Data";
 
 export default function FeedingDetails(props) {
   // const [formData, setFormData] = useContext(Data);
+  const sharedData = useContext(Data);
   const [feeding, setFeeding] = useState([]);
 
   let { id } = useParams();
 
   console.log(id);
 
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
+
+  // Update formData using setFormData
+  const setFormData = useContext(Data)[1];
+
+  // Get the setter function
+  const showFeeding = (e) => {
+    const formDataString = JSON.stringify(sharedData);
+    localStorage.setItem("formData", formDataString);
+    navigate(`/editfeeding/${e.id}`);
+  };
 
   useEffect(() => {
     const getFeedingContent = async () => {
@@ -40,7 +47,12 @@ export default function FeedingDetails(props) {
           <p>{feeding.notes}</p>
         </div>
         <div className="d-flex gap-2">
-          <button className="btn btn-outline-primary">Edit</button>
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => showFeeding(feeding)}
+          >
+            Edit
+          </button>
           <button
             className="btn btn-outline-danger"
             onClick={() => props.handleDeleteFeeding(feeding.id)}
