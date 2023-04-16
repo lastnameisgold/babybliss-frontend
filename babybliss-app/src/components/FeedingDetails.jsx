@@ -44,25 +44,25 @@ export default function FeedingDetails(props) {
         <div className="me-auto">
           <h2>🍼</h2>
           <p>
-            <small className="text-uppercase">Amount</small>
+            <small className="text-uppercase fw-semibold">Amount</small>
             <br />
-            {feeding.amount}
+            {feeding.amount} oz
           </p>
 
           <p>
-            <small className="text-uppercase">Method</small>
+            <small className="text-uppercase fw-semibold">Method</small>
             <br />
-            {feeding.method}
+            {feeding.method === 1 ? "Bottle" : "Breast"}
           </p>
+
           {feeding.notes !== "" && (
             <p>
-              <span>
-                <small className="text-uppercase">Note</small>
-              </span>
+              <small className="text-uppercase fw-semibold">Note</small>
               <br />
               {feeding.notes}
             </p>
           )}
+
           <small>
             <p>{logDateString}</p>
           </small>

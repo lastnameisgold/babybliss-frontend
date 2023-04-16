@@ -42,20 +42,20 @@ export default function DiaperDetails(props) {
         <div className="me-auto">
           <h2>{diaper.diaper === 1 ? "💦" : "💩"}</h2>
           <p>
-            <small className="text-uppercase"> Diaper</small>
+            <small className="text-uppercase fw-semibold"> Diaper</small>
             <br />
             {diaper.diaper === 1 ? "Wet" : "Dirty"}
           </p>
 
           <p>
-            <small className="text-uppercase">Skin Rash</small>
+            <small className="text-uppercase fw-semibold">Skin Rash</small>
             <br />
             {diaper.rash === 1 ? "Yes" : "No"}
           </p>
 
           {diaper.notes !== "" && (
             <p>
-              <small className="text-uppercase">Note</small>
+              <small className="text-uppercase fw-semibold">Note</small>
               <br />
               {diaper.notes}
             </p>
