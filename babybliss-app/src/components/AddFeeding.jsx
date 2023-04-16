@@ -43,8 +43,9 @@ export default function AddFeeding(props) {
     // Update showAlert state to true to show alert
     setShowAlert(true);
 
+    // Timeout to navigate to home and refresh page
     setTimeout(() => {
-      // Navigate to /diapers
+      // Navigate to home page
       navigate("/");
       // Refresh the page
       window.location.reload();

@@ -16,27 +16,28 @@ import EditDiaper from "./components/EditDiaper";
 import EditFeeding from "./components/EditFeeding";
 
 function App() {
-  const [affirmations, setAffirmations] = useState([]);
   // State to handle affirmations
+  const [affirmations, setAffirmations] = useState([]);
 
-  const [baby, setBaby] = useState([]);
   // State to handle baby
+  const [baby, setBaby] = useState([]);
 
-  const [diaper, setDiaper] = useState([]);
   // State to handle diaper
+  const [diaper, setDiaper] = useState([]);
 
-  const [feeding, setFeeding] = useState([]);
   // State to handle feeding
+  const [feeding, setFeeding] = useState([]);
 
-  const [error, setError] = useState(null);
   // State to handle error
+  const [error, setError] = useState(null);
 
-  const [diaperContent, setDiaperContent] = useState([]);
   // State to handle diaper content
+  const [diaperContent, setDiaperContent] = useState([]);
 
-  const [feedingContent, setFeedingContent] = useState([]);
   // State to handle feeding content
+  const [feedingContent, setFeedingContent] = useState([]);
 
+  // State to handle form data
   const [formData, setFormData] = useState({
     log: "",
     diaper: "",
@@ -47,12 +48,12 @@ function App() {
     diaper_id: JSON.parse(localStorage.getItem("formData"))?.diaper_id,
     feeding_id: JSON.parse(localStorage.getItem("formData"))?.feeding_id,
   });
-  // State to handle form data
 
   useEffect(() => {
     // localStorage.setItem("formData", JSON.stringify(formData));
   }, [formData]);
 
+  // Fetch affirmations from API
   useEffect(() => {
     const getAffirmations = async () => {
       try {
@@ -60,13 +61,14 @@ function App() {
         setAffirmations(res.data);
       } catch (error) {
         console.error("Failed to get affirmations", error);
-        setError("Failed to get affirmations. Please try again."); // Set error state
+        // Set error state
+        setError("Failed to get affirmations. Please try again.");
       }
     };
     getAffirmations();
   }, []);
-  // Fetch affirmations from API
 
+  // Fetch baby from API
   useEffect(() => {
     const getBaby = async () => {
       try {
@@ -74,13 +76,14 @@ function App() {
         setBaby(res.data);
       } catch (error) {
         console.error("Failed to get baby", error);
-        setError("Failed to get baby. Please try again."); // Set error state
+        // Set error state
+        setError("Failed to get baby. Please try again.");
       }
     };
     getBaby();
   }, []);
-  // Fetch baby from API
 
+  // Fetch diaper from API
   useEffect(() => {
     const getDiaper = async () => {
       try {
@@ -88,13 +91,14 @@ function App() {
         setDiaper(res.data);
       } catch (error) {
         console.error("Failed to get diaper", error);
-        setError("Failed to get diaper. Please try again."); // Set error state
+        // Set error state
+        setError("Failed to get diaper. Please try again.");
       }
     };
     getDiaper();
   }, []);
-  // Fetch diaper from API
 
+  // Fetch feeding from API
   useEffect(() => {
     const getFeeding = async () => {
       try {
@@ -102,13 +106,14 @@ function App() {
         setFeeding(res.data);
       } catch (error) {
         console.error("Failed to get feeding", error);
-        setError("Failed to get feeding. Please try again."); // Set error state
+        // Set error state
+        setError("Failed to get feeding. Please try again.");
       }
     };
     getFeeding();
   }, []);
-  // Fetch feeding from API
 
+  // Fetch diaper content from API
   const getDiaperContent = () => {
     Client.get(`/diapers`).then((getDiaperContent) => {
       setDiaperContent(getDiaperContent.data);
@@ -118,8 +123,8 @@ function App() {
   useEffect(() => {
     getDiaperContent();
   }, []);
-  // Fetch diaper content from API
 
+  // Fetch feeding content from API
   const getFeedingContent = () => {
     Client.get(`/feedings`).then((getFeedingContent) => {
       setFeedingContent(getFeedingContent.data);
@@ -129,37 +134,37 @@ function App() {
   useEffect(() => {
     getFeedingContent();
   }, []);
-  // Fetch feeding content from API
 
-  let navigate = useNavigate();
   // Navigate to different pages
+  let navigate = useNavigate();
 
+  // Show diaper
   const showDiaper = (diaper) => {
     navigate(`${diaper.id}`);
   };
-  // Show diaper
 
+  // Show feeding
   const showFeeding = (feeding) => {
     navigate(`${feeding.id}`);
   };
-  // Show feeding
 
+  // Handle change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
-  // Handle change
 
+  // Handle submit diaper
   const handleSubmitDiaper = async (e, id) => {
     console.log("id:", id);
     e.preventDefault();
     console.log(formData);
-    Client.put(`/diapers/${id}`, formData).then(() => {
+    Client.put(`/editdiaper/${id}`, formData).then(() => {
       navigate("/");
       getDiaperContent();
     });
   };
-  // Handle submit diaper
 
+  // Handle submit feeding
   const handleSubmitFeeding = async (e, id) => {
     console.log("id", id);
     e.preventDefault();
@@ -169,25 +174,28 @@ function App() {
       getFeedingContent();
     });
   };
-  // Handle submit feeding
 
   // Handle delete diaper
   const handleDeleteDiaper = (id) => {
     Client.delete(`/diapers/${id}`).then(() => {
       navigate("/");
       getDiaperContent();
-      window.location.reload(); // Refresh the page
+
+      // Refresh the page
+      window.location.reload();
     });
   };
 
+  // Handle delete feeding
   const handleDeleteFeeding = (id) => {
     Client.delete(`/feedings/${id}`).then(() => {
       navigate("/");
       getFeedingContent();
-      window.location.reload(); // Refresh the page
+
+      // Refresh the page
+      window.location.reload();
     });
   };
-  // Handle delete feeding
 
   return (
     <div className="App">
