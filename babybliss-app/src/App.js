@@ -116,7 +116,7 @@ function App() {
 
   // Fetch diaper content from API
   const getDiaperContent = () => {
-    Client.get(`/diapers`).then((getDiaperContent) => {
+    Client.get(`/diapers/`).then((getDiaperContent) => {
       setDiaperContent(getDiaperContent.data);
     });
   };
@@ -127,7 +127,7 @@ function App() {
 
   // Fetch feeding content from API
   const getFeedingContent = () => {
-    Client.get(`/feedings`).then((getFeedingContent) => {
+    Client.get(`/feedings/`).then((getFeedingContent) => {
       setFeedingContent(getFeedingContent.data);
     });
   };
@@ -159,7 +159,7 @@ function App() {
     console.log("id:", id);
     e.preventDefault();
     console.log(formData);
-    Client.put(`/editdiaper/${id}`, formData).then(() => {
+    Client.put(`/diapers/${id}`, formData).then(() => {
       navigate("/");
       getDiaperContent();
     });

@@ -32,6 +32,7 @@ export default function EditDiaper(props) {
             className="form-control"
             id="log"
             name="log"
+            value={props.formData.log}
             onChange={props.handleChange}
           />
 
@@ -40,7 +41,7 @@ export default function EditDiaper(props) {
             className="form-control"
             id="diaper"
             name="diaper"
-            value={props.diaper}
+            value={props.formData.diaper}
             onChange={props.handleChange}
           >
             <option value="">-- Select an option --</option>
@@ -53,7 +54,7 @@ export default function EditDiaper(props) {
             className="form-control"
             id="rash"
             name="rash"
-            value={props.rash}
+            value={props.formData.rash}
             onChange={props.handleChange}
           >
             <option value="">-- Select an option --</option>
@@ -67,15 +68,11 @@ export default function EditDiaper(props) {
             className="form-control"
             id="notes"
             name="notes"
-            value={props.notes}
+            value={props.formData.notes}
             onChange={props.handleChange}
           />
 
-          <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={() => props.handleSubmitDiaper(diaper.id)}
-          >
+          <button type="submit" className="btn btn-primary">
             Update
           </button>
         </div>
