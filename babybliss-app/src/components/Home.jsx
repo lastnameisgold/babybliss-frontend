@@ -87,9 +87,7 @@ export const Home = (props) => {
                           <small className="text-uppercase fw-semibold">
                             Diaper
                           </small>
-
                           <br />
-
                           {event.diaper === 1 ? "Wet" : "Dirty"}
                         </p>
 
@@ -97,9 +95,7 @@ export const Home = (props) => {
                           <small className="text-uppercase fw-semibold">
                             Skin Rash
                           </small>
-
                           <br />
-
                           {event.rash === 1 ? "Yes" : "No"}
                         </p>
                       </>
@@ -118,9 +114,7 @@ export const Home = (props) => {
                           <small className="text-uppercase fw-semibold ">
                             Feeding Method
                           </small>
-
                           <br />
-
                           {event.method === 1 ? "Bottle" : "Breast"}
                         </p>
                       </>
@@ -129,9 +123,7 @@ export const Home = (props) => {
                     {event.notes && event.notes !== "" && (
                       <p>
                         <small className="text-uppercase">Note</small>
-
                         <br />
-
                         {event.notes}
                       </p>
                     )}

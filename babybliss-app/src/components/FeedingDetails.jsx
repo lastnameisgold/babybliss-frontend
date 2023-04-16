@@ -43,10 +43,17 @@ export default function FeedingDetails(props) {
       <div className="text-bg-dark rounded-4 p-4 d-flex align-items-start">
         <div className="me-auto">
           <h2>🍼</h2>
-          <small className="text-uppercase">Amount</small>
-          <p>{feeding.amount}</p>
-          <small className="text-uppercase">Method</small>
-          <p>{feeding.method}</p>
+          <p>
+            <small className="text-uppercase">Amount</small>
+            <br />
+            {feeding.amount}
+          </p>
+
+          <p>
+            <small className="text-uppercase">Method</small>
+            <br />
+            {feeding.method}
+          </p>
           {feeding.notes !== "" && (
             <p>
               <span>

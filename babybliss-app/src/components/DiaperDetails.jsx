@@ -41,30 +41,31 @@ export default function DiaperDetails(props) {
       <div className="text-bg-dark rounded-4 p-4 d-flex align-items-start">
         <div className="me-auto">
           <h2>{diaper.diaper === 1 ? "💦" : "💩"}</h2>
-          <span>
+          <p>
             <small className="text-uppercase"> Diaper</small>
-          </span>
-          <br />
-          <p>{diaper.diaper === 1 ? "Wet" : "Dirty"}</p>
-          <span>
+            <br />
+            {diaper.diaper === 1 ? "Wet" : "Dirty"}
+          </p>
+
+          <p>
             <small className="text-uppercase">Skin Rash</small>
-          </span>
-          <br />
-          <p>{diaper.rash === 1 ? "Yes" : "No"}</p>
+            <br />
+            {diaper.rash === 1 ? "Yes" : "No"}
+          </p>
 
           {diaper.notes !== "" && (
             <p>
-              <span>
-                <small className="text-uppercase">Note</small>
-              </span>
+              <small className="text-uppercase">Note</small>
               <br />
               {diaper.notes}
             </p>
           )}
-          <small>
-            <p>{logDateString}</p>
-          </small>
+
+          <p>
+            <small>{logDateString}</small>
+          </p>
         </div>
+
         <div className="d-flex gap-2">
           <button
             className="btn btn-outline-primary"
@@ -72,6 +73,7 @@ export default function DiaperDetails(props) {
           >
             Edit
           </button>
+
           <button
             className="btn btn-outline-danger"
             onClick={() => props.handleDeleteDiaper(diaper.id)}
