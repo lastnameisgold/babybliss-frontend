@@ -31,6 +31,8 @@ export default function DiaperDetails(props) {
     getDiaperContent();
   }, [id]);
 
+  console.log(diaper);
+
   const logDate = new Date(diaper.log);
   const logDateString = logDate.toLocaleString();
 
@@ -49,11 +51,16 @@ export default function DiaperDetails(props) {
           </span>
           <br />
           <p>{diaper.rash === 1 ? "Yes" : "No"}</p>
-          <span>
-            <small className="text-uppercase">Notes</small>
-          </span>
-          <br />
-          <p>{diaper.notes}</p>
+
+          {diaper.notes !== "" && (
+            <p>
+              <span>
+                <small className="text-uppercase">Note</small>
+              </span>
+              <br />
+              {diaper.notes}
+            </p>
+          )}
           <small>
             <p>{logDateString}</p>
           </small>

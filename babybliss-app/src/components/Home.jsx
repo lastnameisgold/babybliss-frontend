@@ -84,42 +84,54 @@ export const Home = (props) => {
                       <>
                         <h2>{event.diaper === 1 ? "💦" : "💩"}</h2>
                         <p>
-                          <span>
-                            <small className="text-uppercase">Diaper</small>
-                          </span>
+                          <small className="text-uppercase fw-semibold">
+                            Diaper
+                          </small>
+
                           <br />
+
                           {event.diaper === 1 ? "Wet" : "Dirty"}
                         </p>
-                        <span>
-                          <small className="text-uppercase">Skin Rash</small>
-                        </span>
-                        <br />
-                        <p>{event.rash === 1 ? "Yes" : "No"}</p>
+
+                        <p>
+                          <small className="text-uppercase fw-semibold">
+                            Skin Rash
+                          </small>
+
+                          <br />
+
+                          {event.rash === 1 ? "Yes" : "No"}
+                        </p>
                       </>
                     ) : (
                       <>
                         <h2>🍼</h2>
-                        <span>
-                          <small className="text-uppercase">Amount</small>
-                        </span>
-                        <br />
-                        <p>{event.amount} oz</p>
-                        <span>
-                          <small className="text-uppercase">
+                        <p>
+                          <small className="text-uppercase fw-semibold">
+                            Amount
+                          </small>
+                          <br />
+                          {event.amount} oz
+                        </p>
+
+                        <p>
+                          <small className="text-uppercase fw-semibold ">
                             Feeding Method
                           </small>
-                        </span>
-                        <br />
-                        <p>{event.method === 1 ? "Bottle" : "Breast"}</p>
+
+                          <br />
+
+                          {event.method === 1 ? "Bottle" : "Breast"}
+                        </p>
                       </>
                     )}
 
                     {event.notes && event.notes !== "" && (
                       <p>
-                        <span>
-                          <small className="text-uppercase">Note</small>
-                        </span>
+                        <small className="text-uppercase">Note</small>
+
                         <br />
+
                         {event.notes}
                       </p>
                     )}
