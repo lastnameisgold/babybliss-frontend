@@ -50,6 +50,7 @@ function App() {
   });
 
   useEffect(() => {
+    console.log(formData);
     // localStorage.setItem("formData", JSON.stringify(formData));
   }, [formData]);
 
@@ -243,6 +244,19 @@ function App() {
           />
 
           <Route
+            path="/editdiaper/:id"
+            element={
+              <EditDiaper
+                diaper={diaper}
+                diaperContent={diaperContent}
+                handleChange={handleChange}
+                handleSubmitDiaper={handleSubmitDiaper}
+                formData={formData}
+              />
+            }
+          />
+
+          <Route
             path="/addfeeding"
             element={
               <AddFeeding
@@ -268,23 +282,16 @@ function App() {
           />
 
           <Route
-            path="/editdiaper/:id"
-            element={<EditDiaper />}
-            diaper={diaper}
-            diaperContent={diaperContent}
-            handleChange={handleChange}
-            handleSubmitDiaper={handleSubmitDiaper}
-            formData={formData}
-          />
-
-          <Route
             path="/editfeeding/:id"
-            element={<EditFeeding />}
-            feeding={feeding}
-            feedingContent={feedingContent}
-            handleChange={handleChange}
-            handleSubmitFeeding={handleSubmitFeeding}
-            formData={formData}
+            element={
+              <EditFeeding
+                feeding={feeding}
+                feedingContent={feedingContent}
+                handleChange={handleChange}
+                handleSubmitFeeding={handleSubmitFeeding}
+                formData={formData}
+              />
+            }
           />
 
           <Route path="/login" element={<Login />} />
