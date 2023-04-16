@@ -13,11 +13,7 @@ export const Home = (props) => {
 
   let navigate = useNavigate();
 
-  // const showDetails = (event) => {
-  //   setFormData({ ...formData, diaper_id: event.id });
-  //   navigate(`/diaperdetails/${event.id}`);
-  // };
-
+  // Update formData using setFormData
   const showDetails = (event) => {
     setFormData({ ...formData, diaper_id: event.id });
 
@@ -63,8 +59,10 @@ export const Home = (props) => {
         <div className="flex-wrap d-grid gap-3">
           {props.diaper &&
             props.feeding &&
-            [...props.diaper, ...props.feeding] // Merge diaper and feeding arrays
-              .sort((a, b) => new Date(b.log) - new Date(a.log)) // Sort combined array in descending order based on log property
+            // Merge diaper and feeding arrays
+            [...props.diaper, ...props.feeding]
+              // Sort combined array in descending order based on log property
+              .sort((a, b) => new Date(b.log) - new Date(a.log))
               .map((event) => {
                 // Convert log to Date object
                 const logDate = new Date(event.log);

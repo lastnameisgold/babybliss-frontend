@@ -12,8 +12,8 @@ export default function DiaperDetails(props) {
 
   // Update formData using setFormData
   const setFormData = useContext(Data)[1];
-  // Get the setter function
 
+  // Get the setter function
   const showDiaper = (e) => {
     const formDataString = JSON.stringify(sharedData);
     localStorage.setItem("formData", formDataString);
@@ -31,15 +31,32 @@ export default function DiaperDetails(props) {
     getDiaperContent();
   }, [id]);
 
+  const logDate = new Date(diaper.log);
+  const logDateString = logDate.toLocaleString();
+
   return (
     <div key={diaper.id} className="p-5">
-      <div className="text-bg-dark rounded-4 p-4">
-        <div>
+      <div className="text-bg-dark rounded-4 p-4 d-flex align-items-start">
+        <div className="me-auto">
           <h2>{diaper.diaper === 1 ? "💦" : "💩"}</h2>
-          <p>{diaper.log}</p>
-          <p>{diaper.diaper}</p>
-          <p>{diaper.rash}</p>
+          <span>
+            <small className="text-uppercase"> Diaper</small>
+          </span>
+          <br />
+          <p>{diaper.diaper === 1 ? "Wet" : "Dirty"}</p>
+          <span>
+            <small className="text-uppercase">Skin Rash</small>
+          </span>
+          <br />
+          <p>{diaper.rash === 1 ? "Yes" : "No"}</p>
+          <span>
+            <small className="text-uppercase">Notes</small>
+          </span>
+          <br />
           <p>{diaper.notes}</p>
+          <small>
+            <p>{logDateString}</p>
+          </small>
         </div>
         <div className="d-flex gap-2">
           <button

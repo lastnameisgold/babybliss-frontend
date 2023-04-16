@@ -73,7 +73,7 @@ function App() {
   useEffect(() => {
     const getBaby = async () => {
       try {
-        const res = await Client.get("/babies/");
+        const res = await Client.get("/babies");
         setBaby(res.data);
       } catch (error) {
         console.error("Failed to get baby", error);
