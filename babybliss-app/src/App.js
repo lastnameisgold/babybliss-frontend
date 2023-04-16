@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 import { useState, useEffect } from "react";
 import Client from "./services/api";
-import { Data } from "./Data";
+import Data from "./Data";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { Login } from "./components/Login";
 import { Home } from "./components/Home";
@@ -16,14 +16,26 @@ import EditDiaper from "./components/EditDiaper";
 import EditFeeding from "./components/EditFeeding";
 
 function App() {
-  const [affirmations, setAffirmations] = useState([]); // State to handle affirmations
-  const [baby, setBaby] = useState([]); // State to handle baby
-  const [diaper, setDiaper] = useState([]); //
-  const [feeding, setFeeding] = useState([]); // State to handle feeding
-  const [error, setError] = useState(null); // State to handle error
+  const [affirmations, setAffirmations] = useState([]);
+  // State to handle affirmations
 
-  const [diaperContent, setDiaperContent] = useState([]); // State to handle diaper content
-  const [feedingContent, setFeedingContent] = useState([]); // State to handle feeding content
+  const [baby, setBaby] = useState([]);
+  // State to handle baby
+
+  const [diaper, setDiaper] = useState([]);
+  // State to handle diaper
+
+  const [feeding, setFeeding] = useState([]);
+  // State to handle feeding
+
+  const [error, setError] = useState(null);
+  // State to handle error
+
+  const [diaperContent, setDiaperContent] = useState([]);
+  // State to handle diaper content
+
+  const [feedingContent, setFeedingContent] = useState([]);
+  // State to handle feeding content
 
   const [formData, setFormData] = useState({
     log: "",
@@ -35,12 +47,12 @@ function App() {
     diaper_id: JSON.parse(localStorage.getItem("formData"))?.diaper_id,
     feeding_id: JSON.parse(localStorage.getItem("formData"))?.feeding_id,
   });
+  // State to handle form data
 
   useEffect(() => {
-    // console.log(formData);
+    // localStorage.setItem("formData", JSON.stringify(formData));
   }, [formData]);
 
-  // Fetch affirmations from API
   useEffect(() => {
     const getAffirmations = async () => {
       try {
@@ -53,8 +65,8 @@ function App() {
     };
     getAffirmations();
   }, []);
+  // Fetch affirmations from API
 
-  // Fetch baby from API
   useEffect(() => {
     const getBaby = async () => {
       try {
@@ -67,8 +79,8 @@ function App() {
     };
     getBaby();
   }, []);
+  // Fetch baby from API
 
-  // Fetch diaper from API
   useEffect(() => {
     const getDiaper = async () => {
       try {
@@ -81,8 +93,8 @@ function App() {
     };
     getDiaper();
   }, []);
+  // Fetch diaper from API
 
-  // Fetch feeding from API
   useEffect(() => {
     const getFeeding = async () => {
       try {
@@ -95,8 +107,8 @@ function App() {
     };
     getFeeding();
   }, []);
+  // Fetch feeding from API
 
-  // Fetch diaper content from API
   const getDiaperContent = () => {
     Client.get(`/diapers`).then((getDiaperContent) => {
       setDiaperContent(getDiaperContent.data);
@@ -106,8 +118,8 @@ function App() {
   useEffect(() => {
     getDiaperContent();
   }, []);
+  // Fetch diaper content from API
 
-  // Fetch feeding content from API
   const getFeedingContent = () => {
     Client.get(`/feedings`).then((getFeedingContent) => {
       setFeedingContent(getFeedingContent.data);
@@ -117,25 +129,26 @@ function App() {
   useEffect(() => {
     getFeedingContent();
   }, []);
+  // Fetch feeding content from API
 
   let navigate = useNavigate();
+  // Navigate to different pages
 
-  // Show diaper
   const showDiaper = (diaper) => {
     navigate(`${diaper.id}`);
   };
+  // Show diaper
 
-  // Show feeding
   const showFeeding = (feeding) => {
     navigate(`${feeding.id}`);
   };
+  // Show feeding
 
-  // Handle change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+  // Handle change
 
-  // Handle submit diaper
   const handleSubmitDiaper = async (e, id) => {
     console.log("id:", id);
     e.preventDefault();
@@ -145,8 +158,8 @@ function App() {
       getDiaperContent();
     });
   };
+  // Handle submit diaper
 
-  // Handle submit feeding
   const handleSubmitFeeding = async (e, id) => {
     console.log("id", id);
     e.preventDefault();
@@ -156,20 +169,25 @@ function App() {
       getFeedingContent();
     });
   };
+  // Handle submit feeding
 
   // Handle delete diaper
   const handleDeleteDiaper = (id) => {
     Client.delete(`/diapers/${id}`).then(() => {
       navigate("/");
+      getDiaperContent();
+      window.location.reload(); // Refresh the page
     });
   };
 
-  // Handle delete feeding
   const handleDeleteFeeding = (id) => {
     Client.delete(`/feedings/${id}`).then(() => {
       navigate("/");
+      getFeedingContent();
+      window.location.reload(); // Refresh the page
     });
   };
+  // Handle delete feeding
 
   return (
     <div className="App">
@@ -190,6 +208,7 @@ function App() {
               />
             }
           />
+
           <Route
             path="/adddiaper"
             element={
@@ -200,6 +219,7 @@ function App() {
               />
             }
           />
+
           <Route
             path="/diaperdetails/:id"
             element={
@@ -213,6 +233,7 @@ function App() {
               />
             }
           />
+
           <Route
             path="/addfeeding"
             element={
@@ -223,6 +244,7 @@ function App() {
               />
             }
           />
+
           <Route
             path="/feedingdetails/:id"
             element={
@@ -246,6 +268,7 @@ function App() {
             handleSubmitDiaper={handleSubmitDiaper}
             formData={formData}
           />
+
           <Route
             path="/editfeeding/:id"
             element={<EditFeeding />}
@@ -257,6 +280,7 @@ function App() {
           />
 
           <Route path="/login" element={<Login />} />
+
           <Route path="/logout" element={<Logout />} />
         </Routes>
       </Data.Provider>

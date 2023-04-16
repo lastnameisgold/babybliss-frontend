@@ -2,7 +2,7 @@
 import { useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Data } from "../Data";
+import Data from "../Data";
 
 // Define the Login function.
 export const Home = (props) => {

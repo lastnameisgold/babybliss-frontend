@@ -1,16 +1,24 @@
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { Data } from "../Data";
+import Data from "../Data";
 
 export default function DiaperDetails(props) {
-  // const [formData, setFormData] = useContext(Data);
+  const sharedData = useContext(Data);
   const [diaper, setDiaper] = useState([]);
 
   let { id } = useParams();
 
-  console.log(id);
+  let navigate = useNavigate();
 
-  // let navigate = useNavigate();
+  // Update formData using setFormData
+  const setFormData = useContext(Data)[1];
+  // Get the setter function
+
+  const showDiaper = (e) => {
+    const formDataString = JSON.stringify(sharedData);
+    localStorage.setItem("formData", formDataString);
+    navigate(`/editdiaper/${e.id}`);
+  };
 
   useEffect(() => {
     const getDiaperContent = async () => {
@@ -23,8 +31,6 @@ export default function DiaperDetails(props) {
     getDiaperContent();
   }, [id]);
 
-  console.log(diaper);
-
   return (
     <div key={diaper.id} className="p-5">
       <div className="text-bg-dark rounded-4 p-4">
@@ -36,7 +42,12 @@ export default function DiaperDetails(props) {
           <p>{diaper.notes}</p>
         </div>
         <div className="d-flex gap-2">
-          <button className="btn btn-outline-primary">Edit</button>
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => showDiaper(diaper)}
+          >
+            Edit
+          </button>
           <button
             className="btn btn-outline-danger"
             onClick={() => props.handleDeleteDiaper(diaper.id)}

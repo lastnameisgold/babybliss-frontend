@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Client from "../services/api";
 
 export default function AddDiaper(props) {
@@ -7,6 +8,9 @@ export default function AddDiaper(props) {
 
   // Add state variable for alert
   const [showAlert, setShowAlert] = useState(false);
+
+  // Add state variable for navigate
+  const navigate = useNavigate();
 
   // Define form data state variable
   const [formData, setFormData] = useState({
@@ -18,7 +22,7 @@ export default function AddDiaper(props) {
 
   // Load form data from localStorage
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
   // Handle form submission
@@ -37,6 +41,13 @@ export default function AddDiaper(props) {
     setAddDiaper(res.data);
     // Update showAlert state to true to show alert
     setShowAlert(true);
+    setTimeout(() => {
+      navigate("/");
+      // Navigate to /diapers
+      window.location.reload();
+      // Refresh the page
+    }, 1500);
+    // After 2 seconds, navigate to /diapers
   };
 
   return (
