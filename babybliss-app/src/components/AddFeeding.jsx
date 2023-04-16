@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Client from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 export default function AddFeeding(props) {
   // Define state variables
@@ -7,6 +8,9 @@ export default function AddFeeding(props) {
 
   // Add state variable for alert
   const [showAlert, setShowAlert] = useState(false);
+
+  // Add state variable for navigate
+  const navigate = useNavigate();
 
   // Define form data state variable
   const [formData, setFormData] = useState({
@@ -35,8 +39,17 @@ export default function AddFeeding(props) {
     const res = await Client.post("/feedings/", formData);
     console.log(res.data);
     setAddFeeding(res.data);
+
     // Update showAlert state to true to show alert
     setShowAlert(true);
+
+    setTimeout(() => {
+      // Navigate to /diapers
+      navigate("/");
+      // Refresh the page
+      window.location.reload();
+      // After 1.5 seconds, navigate to /diapers
+    }, 1500);
   };
 
   return (

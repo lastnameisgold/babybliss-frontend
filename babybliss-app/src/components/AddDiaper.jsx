@@ -39,15 +39,17 @@ export default function AddDiaper(props) {
     const res = await Client.post("/diapers/", formData);
     console.log(res.data);
     setAddDiaper(res.data);
+
     // Update showAlert state to true to show alert
     setShowAlert(true);
+
     setTimeout(() => {
-      navigate("/");
       // Navigate to /diapers
-      window.location.reload();
+      navigate("/");
       // Refresh the page
+      window.location.reload();
+      // After 1.5 seconds, navigate to /diapers
     }, 1500);
-    // After 2 seconds, navigate to /diapers
   };
 
   return (
