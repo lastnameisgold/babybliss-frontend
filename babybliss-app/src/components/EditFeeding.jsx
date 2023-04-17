@@ -91,7 +91,7 @@ export default function EditFeeding(props) {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary rounded-5">
             Update
           </button>
         </div>

@@ -38,6 +38,9 @@ export default function DiaperDetails(props) {
 
   return (
     <div key={diaper.id} className="p-5">
+      {props.showAlert && (
+        <div className="alert alert-danger">Diaper log deleted</div>
+      )}
       <div className="text-bg-dark rounded-4 p-4 d-flex align-items-start">
         <div className="me-auto">
           <h2>{diaper.diaper === 1 ? "💦" : "💩"}</h2>

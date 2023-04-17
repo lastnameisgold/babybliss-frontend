@@ -202,22 +202,36 @@ function App() {
   // Handle delete diaper
   const handleDeleteDiaper = (id) => {
     Client.delete(`/diapers/${id}`).then(() => {
-      navigate("/");
-      getDiaperContent();
+      // Update showAlert state to true to show alert
+      setShowAlert(true);
 
-      // Refresh the page
-      window.location.reload();
+      // Timeout to navigate to home and refresh page
+      setTimeout(() => {
+        // Navigate to home page
+        navigate("/");
+        // Refresh the page
+        window.location.reload();
+        // After 1.5 seconds, navigate to /diapers
+      }, 1500);
+      getDiaperContent();
     });
   };
 
   // Handle delete feeding
   const handleDeleteFeeding = (id) => {
     Client.delete(`/feedings/${id}`).then(() => {
-      navigate("/");
-      getFeedingContent();
+      // Update showAlert state to true to show alert
+      setShowAlert(true);
 
-      // Refresh the page
-      window.location.reload();
+      // Timeout to navigate to home and refresh page
+      setTimeout(() => {
+        // Navigate to home page
+        navigate("/");
+        // Refresh the page
+        window.location.reload();
+        // After 1.5 seconds, navigate to /diapers
+      }, 1500);
+      getFeedingContent();
     });
   };
 
@@ -262,6 +276,7 @@ function App() {
                 handleSubmitDiaper={handleSubmitDiaper}
                 handleDeleteDiaper={handleDeleteDiaper}
                 formData={formData}
+                showAlert={showAlert}
               />
             }
           />
@@ -301,6 +316,7 @@ function App() {
                 handleSubmitFeeding={handleSubmitFeeding}
                 handleDeleteFeeding={handleDeleteFeeding}
                 formData={formData}
+                showAlert={showAlert}
               />
             }
           />

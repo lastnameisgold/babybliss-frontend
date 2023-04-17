@@ -126,7 +126,7 @@ export default function AddFeeding(props) {
 
           <button
             type="submit"
-            className="btn btn-primary"
+            className="btn btn-primary rounded-5"
             onClick={handleSubmit}
           >
             Submit
