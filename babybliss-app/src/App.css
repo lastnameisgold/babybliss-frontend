@@ -1,6 +1,7 @@
 /* Auth Container */
 
-.Auth-form-container {
+.Auth-form-container,
+.form-container {
   height: 100vh;
   width: 100%;
 }

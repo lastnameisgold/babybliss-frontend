@@ -21,8 +21,8 @@ export default function EditDiaper(props) {
   }, [props.diaperContent, id]);
 
   return (
-    <div className="p-4">
-      <form onSubmit={(e) => props.handleSubmitDiaper(e, id)}>
+    <div className="form-container p-4 d-flex justify-content-center align-items-center">
+      <form onSubmit={(e) => props.handleSubmitDiaper(e, id)} className="w-50">
         <div className="form-group p-4 d-grid gap-3">
           {props.showAlert && (
             <div className="alert alert-success">Diaper updated</div>
@@ -31,7 +31,9 @@ export default function EditDiaper(props) {
           <h3>Edit diaper</h3>
 
           <div>
-            <label htmlFor="log">Date and time</label>
+            <label htmlFor="log" className="mb-1">
+              <small className="fw-semibold text-muted">Date and time</small>
+            </label>
             <input
               type="datetime-local"
               className="form-control"
@@ -43,7 +45,9 @@ export default function EditDiaper(props) {
           </div>
 
           <div>
-            <label htmlFor="diaper">Diaper</label>
+            <label htmlFor="diaper" className="mb-1">
+              <small className="fw-semibold text-muted">Diaper</small>
+            </label>
             <select
               className="form-control"
               id="diaper"
@@ -58,7 +62,9 @@ export default function EditDiaper(props) {
           </div>
 
           <div>
-            <label htmlFor="rash">Rash</label>
+            <label htmlFor="rash" className="mb-1">
+              <small className="fw-semibold text-muted">Rash</small>
+            </label>
             <select
               className="form-control"
               id="rash"
@@ -73,7 +79,9 @@ export default function EditDiaper(props) {
           </div>
 
           <div>
-            <label htmlFor="notes">Notes</label>
+            <label htmlFor="notes" className="mb-1">
+              <small className=" fw-semibold text-muted">Notes</small>
+            </label>
             <textarea
               type="text"
               className="form-control"
