@@ -8,6 +8,15 @@
 
 /* Auth Container */
 
+/* Login Page Image */
+.login-page-img {
+  background-image: url("https://images.unsplash.com/photo-1596510914914-e14c6f59f925?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80");
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 50%;
+}
+
 /* Affirmations */
 .affirmation-container {
   width: 100%;

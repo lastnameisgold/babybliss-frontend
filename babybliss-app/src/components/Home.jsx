@@ -122,7 +122,9 @@ export const Home = (props) => {
 
                     {event.notes && event.notes !== "" && (
                       <p>
-                        <small className="text-uppercase">Note</small>
+                        <small className="text-uppercase fw-semibold">
+                          Note
+                        </small>
                         <br />
                         {event.notes}
                       </p>

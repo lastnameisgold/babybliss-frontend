@@ -33,8 +33,9 @@ export const Login = () => {
 
   return (
     <div className="Auth-form-container d-flex justify-content-center align-items-center">
+      <div className="login-page-img"></div>
       <form
-        className="Auth-form w-50 p-4 rounded-3 bg-light text-bg-light"
+        className="Auth-form w-50 p-4 mx-4 rounded-3 bg-light text-bg-light"
         onSubmit={submit}
       >
         <div className="Auth-form-content">
