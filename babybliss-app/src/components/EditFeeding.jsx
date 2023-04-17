@@ -21,11 +21,13 @@ export default function EditFeeding(props) {
   }, [props.feedingContent, id]);
 
   return (
-    <div>
-      <h2>Edit feeding</h2>
+    <div className="p-4">
       <form onSubmit={(e) => props.handleSubmitFeeding(e, id)}>
-        {/* {showAlert && <div className="alert alert-success">Feeding logged</div>} */}
+        {props.showAlert && (
+          <div className="alert alert-success">Feeding updated</div>
+        )}
         <div className="form-group p-4">
+          <h3>Edit feeding</h3>
           <label htmlFor="log">Date and time</label>
           <input
             type="datetime-local"

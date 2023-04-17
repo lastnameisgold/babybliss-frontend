@@ -46,7 +46,7 @@ export const Home = (props) => {
     }
   }, []);
   return (
-    <div className="home-container bg-light d-grid gap-3">
+    <div className="home-container bg-light d-grid">
       <div className="affirmation-container">
         <div className="affirmation-content text-center d-flex justify-content-center align-items-center">
           <h2 className="affirmation-title">
@@ -55,7 +55,7 @@ export const Home = (props) => {
         </div>
       </div>
 
-      <div className="p-5">
+      <div className="p-5 pt-3">
         <div className="flex-wrap d-grid gap-3">
           {props.diaper &&
             props.feeding &&

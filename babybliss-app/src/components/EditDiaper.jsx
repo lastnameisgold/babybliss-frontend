@@ -21,56 +21,68 @@ export default function EditDiaper(props) {
   }, [props.diaperContent, id]);
 
   return (
-    <div>
-      <h2>Edit diaper</h2>
+    <div className="p-4">
       <form onSubmit={(e) => props.handleSubmitDiaper(e, id)}>
-        {/* {showAlert && <div className="alert alert-success">Diaper logged</div>} */}
-        <div className="form-group p-4">
-          <label htmlFor="log">Date and time</label>
-          <input
-            type="datetime-local"
-            className="form-control"
-            id="log"
-            name="log"
-            value={props.formData.log}
-            onChange={props.handleChange}
-          />
+        <div className="form-group p-4 d-grid gap-3">
+          {props.showAlert && (
+            <div className="alert alert-success">Diaper updated</div>
+          )}
 
-          <label htmlFor="diaper">Diaper</label>
-          <select
-            className="form-control"
-            id="diaper"
-            name="diaper"
-            value={props.formData.diaper}
-            onChange={props.handleChange}
-          >
-            <option value="">-- Select an option --</option>
-            <option value="1">Wet</option>
-            <option value="2">Dirty</option>
-          </select>
+          <h3>Edit diaper</h3>
 
-          <label htmlFor="rash">Rash</label>
-          <select
-            className="form-control"
-            id="rash"
-            name="rash"
-            value={props.formData.rash}
-            onChange={props.handleChange}
-          >
-            <option value="">-- Select an option --</option>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
+          <div>
+            <label htmlFor="log">Date and time</label>
+            <input
+              type="datetime-local"
+              className="form-control"
+              id="log"
+              name="log"
+              value={props.formData.log}
+              onChange={props.handleChange}
+            />
+          </div>
 
-          <label htmlFor="notes">Notes</label>
-          <input
-            type="text"
-            className="form-control"
-            id="notes"
-            name="notes"
-            value={props.formData.notes}
-            onChange={props.handleChange}
-          />
+          <div>
+            <label htmlFor="diaper">Diaper</label>
+            <select
+              className="form-control"
+              id="diaper"
+              name="diaper"
+              value={props.formData.diaper}
+              onChange={props.handleChange}
+            >
+              <option value="">-- Select an option --</option>
+              <option value="1">Wet</option>
+              <option value="2">Dirty</option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="rash">Rash</label>
+            <select
+              className="form-control"
+              id="rash"
+              name="rash"
+              value={props.formData.rash}
+              onChange={props.handleChange}
+            >
+              <option value="">-- Select an option --</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="notes">Notes</label>
+            <textarea
+              type="text"
+              className="form-control"
+              id="notes"
+              name="notes"
+              value={props.formData.notes}
+              onChange={props.handleChange}
+            />
+          </div>
 
           <button type="submit" className="btn btn-primary">
             Update

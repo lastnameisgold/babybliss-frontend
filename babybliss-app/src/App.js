@@ -16,6 +16,9 @@ import EditDiaper from "./components/EditDiaper";
 import EditFeeding from "./components/EditFeeding";
 
 function App() {
+  // Add state variable for alert
+  const [showAlert, setShowAlert] = useState(false);
+
   // State to handle affirmations
   const [affirmations, setAffirmations] = useState([]);
 
@@ -160,7 +163,17 @@ function App() {
     e.preventDefault();
     console.log(formData);
     Client.put(`/diapers/${id}`, formData).then(() => {
-      navigate("/");
+      // Update showAlert state to true to show alert
+      setShowAlert(true);
+
+      // Timeout to navigate to home and refresh page
+      setTimeout(() => {
+        // Navigate to home page
+        navigate("/");
+        // Refresh the page
+        window.location.reload();
+        // After 1.5 seconds, navigate to /diapers
+      }, 1500);
       getDiaperContent();
     });
   };
@@ -171,7 +184,17 @@ function App() {
     e.preventDefault();
     console.log(formData);
     Client.put(`/feedings/${id}`, formData).then(() => {
-      navigate("/");
+      // Update showAlert state to true to show alert
+      setShowAlert(true);
+
+      // Timeout to navigate to home and refresh page
+      setTimeout(() => {
+        // Navigate to home page
+        navigate("/");
+        // Refresh the page
+        window.location.reload();
+        // After 1.5 seconds, navigate to /diapers
+      }, 1500);
       getFeedingContent();
     });
   };
@@ -252,6 +275,7 @@ function App() {
                 handleChange={handleChange}
                 handleSubmitDiaper={handleSubmitDiaper}
                 formData={formData}
+                showAlert={showAlert}
               />
             }
           />
@@ -290,6 +314,7 @@ function App() {
                 handleChange={handleChange}
                 handleSubmitFeeding={handleSubmitFeeding}
                 formData={formData}
+                showAlert={showAlert}
               />
             }
           />
