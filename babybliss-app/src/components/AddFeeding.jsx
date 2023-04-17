@@ -54,54 +54,75 @@ export default function AddFeeding(props) {
   };
 
   return (
-    <div className="p-4">
-      <form>
-        {showAlert && <div className="alert alert-success">Feeding logged</div>}
-        <div className="form-group p-4">
-          <label htmlFor="log">Date and time</label>
-          <input
-            type="datetime-local"
-            className="form-control"
-            id="log"
-            name="log"
-            value={formData.log}
-            onChange={handleChange}
-          />
+    <div className="form-container p-4 d-flex justify-content-center align-items-center">
+      <form className="w-50">
+        <div className="form-group p-4 d-grid gap-3">
+          {showAlert && (
+            <div className="alert alert-success">Feeding logged</div>
+          )}
 
-          <label htmlFor="amount">Amount</label>
-          <input
-            type="number"
-            min="0"
-            max="10"
-            className="form-control"
-            id="amount"
-            name="amount"
-            value={formData.amount}
-            onChange={handleChange}
-          />
+          <h3>Add feeding</h3>
 
-          <label htmlFor="method">Feeding Method</label>
-          <select
-            className="form-control"
-            id="method"
-            name="method"
-            value={formData.method}
-            onChange={handleChange}
-          >
-            <option value="">-- Select an option --</option>
-            <option value="1">Bottle</option>
-            <option value="2">Breast</option>
-          </select>
+          <div>
+            <label htmlFor="log" className="mb-1">
+              <small className=" fw-semibold text-muted">Date and time</small>
+            </label>
+            <input
+              type="datetime-local"
+              className="form-control"
+              id="log"
+              name="log"
+              value={formData.log}
+              onChange={handleChange}
+            />
+          </div>
 
-          <label htmlFor="notes">Notes</label>
-          <input
-            type="text"
-            className="form-control"
-            id="notes"
-            name="notes"
-            value={formData.notes}
-            onChange={handleChange}
-          />
+          <div>
+            <label htmlFor="amount" className="mb-1">
+              <small className=" fw-semibold text-muted">Amount</small>
+            </label>
+            <input
+              type="number"
+              min="0"
+              max="10"
+              className="form-control"
+              id="amount"
+              name="amount"
+              value={formData.amount}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="method" className="mb-1">
+              <small className=" fw-semibold text-muted">Feeding method</small>
+            </label>
+            <select
+              className="form-control"
+              id="method"
+              name="method"
+              value={formData.method}
+              onChange={handleChange}
+            >
+              <option value="">-- Select an option --</option>
+              <option value="1">Bottle</option>
+              <option value="2">Breast</option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="notes" className="mb-1">
+              <small className=" fw-semibold text-muted">Notes</small>
+            </label>
+            <textarea
+              type="text"
+              className="form-control"
+              id="notes"
+              name="notes"
+              value={formData.notes}
+              onChange={handleChange}
+            />
+          </div>
 
           <button
             type="submit"
