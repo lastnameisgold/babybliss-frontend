@@ -12,7 +12,7 @@ export function Navigation() {
 
   return (
     <div>
-      <Navbar className="px-4 me-auto" bg="dark" variant="dark">
+      <Navbar className="px-4 me-auto" bg="primary" variant="dark">
         <Navbar.Brand className="me-auto" href="/">
           BabyBliss
         </Navbar.Brand>
