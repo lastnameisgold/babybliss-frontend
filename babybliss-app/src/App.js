@@ -14,6 +14,7 @@ import DiaperDetails from "./components/DiaperDetails";
 import FeedingDetails from "./components/FeedingDetails";
 import EditDiaper from "./components/EditDiaper";
 import EditFeeding from "./components/EditFeeding";
+import Landing from "./components/Landing";
 
 function App() {
   // Add state variable for alert
@@ -240,6 +241,8 @@ function App() {
       <Data.Provider value={{ formData, setFormData }}>
         <Navigation />
         <Routes>
+          <Route path="/landing" element={<Landing />} />
+
           <Route
             path="/"
             element={
